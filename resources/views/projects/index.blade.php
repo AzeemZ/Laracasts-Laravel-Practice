@@ -1,18 +1,16 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<h1>Projects</h1>
-<ul>
-    @foreach($projects as $project)
-        <li>{{$project->title}}</li>
-    @endforeach
-</ul>
-</body>
-</html>
+@extends('projects.layout')
+
+@section('title')
+    All Projects
+@endsection
+
+@section('content')
+    <h1 class="text-center my-5">Projects</h1>
+    <ul class="list-group">
+        @foreach($projects as $project)
+            <li class="list-group-item">
+                <a style="text-decoration: none" href="/projects/{{$project->id}}"> {{$project->title}} </a>
+            </li>
+        @endforeach
+    </ul>
+@endsection

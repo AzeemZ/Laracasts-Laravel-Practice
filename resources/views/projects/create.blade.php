@@ -1,25 +1,37 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Create Projects</h1>
+@extends('projects.layout')
 
-    <form method="post" action="/projects">
+@section('title')
+    Create Projects
+@endsection
 
-        {{csrf_field()}}
+@section('content')
+<h1 class="my-5">Create Projects</h1>
 
-        <input type="text" name="title" placeholder="Project Title"> <br />
+<form method="post" action="/projects">
+    {{csrf_field()}}
 
-        <textarea name="description" placeholder="Project Description Here..."></textarea> <br />
+    <div class="w-50">
+        <div class="form-group">
+            <label class="col-form-label-lg" for="title">Title:</label>
+            <input type="text" class="form-control {{$errors->has('title') ? 'is-invalid' : ''}}"
+                   id="title" name="title" placeholder="Project Title" value="{{old('title')}}">
+        </div>
+        <div class="form-group">
+            <label class="col-form-label-lg" for="description">Description:</label>
+            <textarea class="form-control {{$errors->has('description') ? 'is-invalid' : ''}}" id="description"
+                      name="description" placeholder="Project Description Here...">{{old('description')}}</textarea>
+        </div>
+        <input type="submit" class="btn btn-primary" name="Submit">
+    </div>
+</form>
 
-        <input type="submit" name="Submit">
-
-    </form>
-</body>
-</html>
+@if($errors->any())
+    <div class="alert alert-danger mt-4 w-50">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+@endsection

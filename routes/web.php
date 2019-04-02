@@ -11,9 +11,19 @@
 |
 */
 
+
 Route::get('/', function (){
     return view('welcome');
 });
-Route::get('/projects', 'PagesController@index');
-Route::post('/projects', 'PagesController@store');
-Route::get('/projects/create', 'PagesController@create');
+
+Route::resource('projects', 'ProjectsController');
+
+Route::patch('tasks/{tasks}', 'ProjectTasksController@update');
+
+//Route::get('/projects', 'PagesController@index');
+//Route::post('/projects', 'PagesController@store');
+//Route::get('/projects/create', 'PagesController@create');
+//Route::get('/projects/{project}', 'PagesController@show');
+//Route::patch('/projects/{project}', 'PagesController@update');
+//Route::delete('/projects/{project}', 'PagesController@destroy');
+//Route::get('/projects/{project}/edit', 'PagesController@edit');
