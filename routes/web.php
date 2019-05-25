@@ -18,7 +18,8 @@ Route::get('/', function (){
 
 Route::resource('projects', 'ProjectsController');
 
-Route::patch('tasks/{tasks}', 'ProjectTasksController@update');
+Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+Route::patch('/tasks/{tasks}', 'ProjectTasksController@update');
 
 //Route::get('/projects', 'PagesController@index');
 //Route::post('/projects', 'PagesController@store');
@@ -27,3 +28,7 @@ Route::patch('tasks/{tasks}', 'ProjectTasksController@update');
 //Route::patch('/projects/{project}', 'PagesController@update');
 //Route::delete('/projects/{project}', 'PagesController@destroy');
 //Route::get('/projects/{project}/edit', 'PagesController@edit');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
